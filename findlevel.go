@@ -30,7 +30,7 @@ func main() {
 	}
 	fInfo, err := os.Stat(path)
 	if err != nil {
-		fmt.Println("Path is wrong: ", err.Error())
+		fmt.Println("Path is wrong:", err.Error())
 		os.Exit(1)
 	}
 	if !fInfo.IsDir() {
@@ -41,7 +41,7 @@ func main() {
 	bmsdirs := make([]gobms.BmsDirectory, 0)
 	err = gobms.FindBmsInDirectory(path, &bmsdirs)
 	if err != nil {
-		fmt.Println("FindBmsInDirectory: ", err.Error())
+		fmt.Println("FindBmsInDirectory:", err.Error())
 		os.Exit(1)
 	}
 
@@ -72,11 +72,11 @@ func main() {
 	}
 	fmt.Printf("%s", noDifText)
 	fmt.Printf("%s", onlyOneText)
-	fmt.Printf("FOUND DIFFICULTIES. OK:%d NG:%d\n", okcount, ngcount)
+	fmt.Printf("Difficulties OK: %d, NG: %d\n", okcount, ngcount)
 
 	err = makeCsv(bmsdirs, path)
 	if err != nil {
-		fmt.Println("makeCsv: ", err.Error())
+		fmt.Println("makeCsv:", err.Error())
 		os.Exit(1)
 	}
 }
@@ -107,7 +107,7 @@ func makeCsv(bmsdirs []gobms.BmsDirectory, rootDirPath string) error {
 	if err != nil {
 		return fmt.Errorf("CSV file Write: %w", err)
 	}
-	fmt.Println("Done and created: ", outputFilename)
+	fmt.Println("Output file created:", outputFilename)
 
 	return nil
 }
